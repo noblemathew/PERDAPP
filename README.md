@@ -1,7 +1,12 @@
-# Enterprise Retail Data Processing Pipeline
+# PySpark Enterprise Retail Data Analytics Processing Pipeline
+
+## Website
+https://perdapp.netlify.app/
+
+---
 
 ## Overview
-The Enterprise Retail Data Processing Pipeline is an automated end-to-end ETL solution developed using Apache Spark (PySpark) and Python to simulate real-world enterprise data engineering workflows. The pipeline processes daily retail transaction datasets, performs data validation and transformation, generates business KPIs, and stores optimized analytical outputs for reporting and downstream analytics.
+The PySpark Enterprise Retail Data Analytics Processing Pipeline is an automated end-to-end ETL solution developed using Apache Spark (PySpark) and Python to simulate real-world enterprise data engineering workflows. The pipeline processes daily retail transaction datasets, performs data validation and transformation, generates business KPIs, and stores optimized analytical outputs for reporting and downstream analytics.
 
 This project demonstrates scalable batch data processing, incremental file handling, automated workflow execution, and production-style ETL pipeline design using PySpark.
 
@@ -21,6 +26,9 @@ This project demonstrates scalable batch data processing, incremental file handl
 - Automated archival of processed datasets
 - Logging and error handling
 - Cloud-ready pipeline architecture
+- Automated CSV detection from Netlify-hosted storage
+- GitHub Actions-based workflow automation
+- AI-ready analytics and visualization architecture
 
 ---
 
@@ -33,4 +41,5 @@ This project demonstrates scalable batch data processing, incremental file handl
 | Spark SQL | Querying and aggregations |
 | Parquet | Optimized data storage |
 | GitHub Actions | Pipeline automation |
-| Power BI | Reporting and dashboards |
+| Netlify | CSV hosting and project website |
+| HTML/CSS/JavaScript | Web interface and visualization |
