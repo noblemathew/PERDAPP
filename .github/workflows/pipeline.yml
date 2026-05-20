@@ -1,5 +1,6 @@
 name: Retail ETL Pipeline
-
+permissions:
+  contents: write
 on:
 
   schedule:
