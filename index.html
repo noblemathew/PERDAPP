@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PySpark Enterprise Retail Analytics Data Processing Pipeline</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            background:#0f172a;
+            color:white;
+            line-height:1.6;
+        }
+
+        .hero{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            padding:40px;
+            background:linear-gradient(to bottom right,#0f172a,#1e293b);
+        }
+
+        .hero-content{
+            max-width:1000px;
+        }
+
+        .tag{
+            display:inline-block;
+            background:#38bdf8;
+            color:#0f172a;
+            padding:8px 18px;
+            border-radius:50px;
+            font-size:14px;
+            font-weight:600;
+            margin-bottom:25px;
+        }
+
+        h1{
+            font-size:60px;
+            margin-bottom:25px;
+            line-height:1.2;
+        }
+
+        .highlight{
+            color:#38bdf8;
+        }
+
+        .hero p{
+            color:#cbd5e1;
+            font-size:18px;
+            margin-bottom:40px;
+        }
+
+        .btn-group{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .btn{
+            padding:14px 30px;
+            border-radius:12px;
+            text-decoration:none;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .primary-btn{
+            background:#38bdf8;
+            color:#0f172a;
+        }
+
+        .primary-btn:hover{
+            background:#0ea5e9;
+        }
+
+        .secondary-btn{
+            border:1px solid #38bdf8;
+            color:#38bdf8;
+        }
+
+        .secondary-btn:hover{
+            background:#38bdf8;
+            color:#0f172a;
+        }
+
+        section{
+            padding:90px 10%;
+        }
+
+        .section-title{
+            font-size:40px;
+            margin-bottom:40px;
+            text-align:center;
+        }
+
+        .overview{
+            background:#111827;
+        }
+
+        .overview p{
+            color:#cbd5e1;
+            max-width:1100px;
+            margin:auto;
+            text-align:center;
+            font-size:18px;
+        }
+
+        .features-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+            gap:25px;
+            margin-top:50px;
+        }
+
+        .feature-card{
+            background:#1e293b;
+            padding:30px;
+            border-radius:18px;
+            transition:0.3s;
+            border:1px solid #334155;
+        }
+
+        .feature-card:hover{
+            transform:translateY(-8px);
+            border-color:#38bdf8;
+        }
+
+        .feature-card h3{
+            margin-bottom:15px;
+            color:#38bdf8;
+        }
+
+        .feature-card p{
+            color:#cbd5e1;
+            font-size:15px;
+        }
+
+        .tech-stack{
+            background:#111827;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:40px;
+        }
+
+        table th{
+            background:#38bdf8;
+            color:#0f172a;
+            padding:16px;
+            text-align:left;
+        }
+
+        table td{
+            padding:16px;
+            border-bottom:1px solid #334155;
+            color:#e2e8f0;
+        }
+
+        .workflow{
+            text-align:center;
+        }
+
+        .workflow-box{
+            background:#1e293b;
+            max-width:900px;
+            margin:auto;
+            padding:40px;
+            border-radius:20px;
+            border:1px solid #334155;
+        }
+
+        .workflow-step{
+            padding:15px;
+            margin:10px 0;
+            background:#0f172a;
+            border-radius:10px;
+            color:#38bdf8;
+            font-weight:500;
+        }
+
+        .footer{
+            text-align:center;
+            padding:40px;
+            background:#020617;
+            color:#94a3b8;
+            font-size:14px;
+        }
+
+        @media(max-width:768px){
+
+            h1{
+                font-size:40px;
+            }
+
+            .hero p{
+                font-size:16px;
+            }
+
+            .section-title{
+                font-size:30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="tag">
+                Enterprise Data Engineering Project
+            </div>
+
+            <h1>
+                <span class="highlight">PySpark</span>
+                Enterprise Retail Data Analytics Processing Pipeline
+            </h1>
+
+            <p>
+                An automated end-to-end ETL pipeline built using Apache Spark (PySpark) and Python 
+                to simulate real-world enterprise data engineering workflows with automation, 
+                KPI analytics, data validation, and scalable batch processing.
+            </p>
+
+            <div class="btn-group">
+
+                <a href="#overview" class="btn primary-btn">
+                    Explore Project
+                </a>
+
+                <a href="#features" class="btn secondary-btn">
+                    View Features
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="overview" id="overview">
+
+        <h2 class="section-title">
+            Project Overview
+        </h2>
+
+        <p>
+            The Enterprise Retail Data Analytics Processing Pipeline is an automated ETL solution developed using 
+            Apache Spark (PySpark) and Python to process daily retail transaction datasets. The system 
+            performs automated data validation, cleaning, transformation, KPI generation, and optimized 
+            storage workflows to simulate production-grade enterprise data engineering pipelines.
+            <br><br>
+            The project demonstrates scalable batch data processing, incremental file handling, automated 
+            workflow execution using GitHub Actions, and cloud-ready analytics architecture for reporting 
+            and downstream visualization systems.
+        </p>
+
+    </section>
+
+
+    <section id="features">
+
+        <h2 class="section-title">
+            Key Features
+        </h2>
+
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <h3>Automated ETL Workflow</h3>
+                <p>
+                    Incremental daily retail data processing using PySpark-based ETL architecture.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Dynamic File Detection</h3>
+                <p>
+                    Automatically detects and processes daily uploaded retail transaction files.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Data Cleaning & Validation</h3>
+                <p>
+                    Handles duplicate records, null values, invalid quantities, and inconsistent data.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>KPI Analytics</h3>
+                <p>
+                    Generates revenue insights, regional sales analysis, and product performance KPIs.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Spark SQL Processing</h3>
+                <p>
+                    Uses Spark SQL transformations and advanced window functions for analytics workflows.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Parquet Storage</h3>
+                <p>
+                    Stores optimized analytical datasets using Parquet-based storage architecture.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>GitHub Actions Automation</h3>
+                <p>
+                    Automated workflow execution and pipeline orchestration using GitHub Actions.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <h3>Cloud-Ready Architecture</h3>
+                <p>
+                    Designed to simulate modern enterprise cloud-based data engineering systems.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="tech-stack">
+
+        <h2 class="section-title">
+            Tech Stack
+        </h2>
+
+        <table>
+
+            <tr>
+                <th>Technology</th>
+                <th>Purpose</th>
+            </tr>
+
+            <tr>
+                <td>Python</td>
+                <td>Core development and ETL logic</td>
+            </tr>
+
+            <tr>
+                <td>Apache Spark (PySpark)</td>
+                <td>Distributed data processing</td>
+            </tr>
+
+            <tr>
+                <td>Spark SQL</td>
+                <td>Analytics and aggregations</td>
+            </tr>
+
+            <tr>
+                <td>Parquet</td>
+                <td>Optimized data storage</td>
+            </tr>
+
+            <tr>
+                <td>GitHub Actions</td>
+                <td>Pipeline automation</td>
+            </tr>
+
+            <tr>
+                <td>Web Visual</td>
+                <td>Analytics dashboards and reporting</td>
+            </tr>
+
+        </table>
+
+    </section>
+
+
+    <section class="workflow">
+
+        <h2 class="section-title">
+            Workflow Architecture
+        </h2>
+
+        <div class="workflow-box">
+
+            <div class="workflow-step">
+                CSV Upload to Netlify
+            </div>
+
+            <div class="workflow-step">
+                GitHub Actions Daily Trigger
+            </div>
+
+            <div class="workflow-step">
+                Download File into Raw Layer
+            </div>
+
+            <div class="workflow-step">
+                PySpark ETL Processing
+            </div>
+
+            <div class="workflow-step">
+                Data Cleaning & Transformation
+            </div>
+
+            <div class="workflow-step">
+                KPI Generation
+            </div>
+
+            <div class="workflow-step">
+                Processed Data Storage
+            </div>
+
+            <div class="workflow-step">
+                AI Visualization Generation
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="footer">
+
+      Project by <strong>Noble Mathew</strong>
+
+    </div>
+
+</body>
+
+</html>
