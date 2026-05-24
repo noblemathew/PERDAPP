@@ -292,21 +292,32 @@ analytics_data = {
 
 print("Analytics Data Generated!")
 
-# Saving cleaned parquet dataset
-
 # Saving cleaned CSV dataset
 
+import glob, shutil
+
+# Step 1 — Write PySpark output folder (unavoidable)
+spark_output_folder = f"../data/processed/cleaned_sales_{today}"
+
 df.coalesce(1).write.mode("overwrite").option(
-
     "header",
-
     True
+).csv(spark_output_folder)
 
-).csv(
+# Step 2 — Find the part file inside the folder
+part_files = glob.glob(f"{spark_output_folder}/part-*.csv")
 
-    f"../data/processed/cleaned_sales_{today}"
+if part_files:
+    # Step 3 — Copy it out as a clean single CSV
+    clean_csv_path = f"../data/processed/cleaned_sales_{today}.csv"
+    shutil.copy(part_files[0], clean_csv_path)
+    print(f"[INFO] Clean CSV saved: cleaned_sales_{today}.csv")
 
-)
+    # Step 4 — Delete the messy PySpark folder
+    shutil.rmtree(spark_output_folder)
+    print(f"[INFO] PySpark output folder removed")
+else:
+    print("[WARN] No part file found — folder kept as-is")
 
 print("[INFO] Cleaned CSV dataset saved successfully")
 
