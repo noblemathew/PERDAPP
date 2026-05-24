@@ -1,113 +1,79 @@
 name: Retail ETL Pipeline
+
 permissions:
   contents: write
-on:
 
+on:
   schedule:
     - cron: '0 8 * * *'
-
   workflow_dispatch:
 
-
 jobs:
-
   run-pipeline:
-
     runs-on: ubuntu-latest
 
     steps:
 
       # STEP 1 — CHECKOUT REPOSITORY
-
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-
       # STEP 2 — SETUP PYTHON
-
       - name: Setup Python
         uses: actions/setup-python@v5
-
         with:
           python-version: '3.11'
 
-
       # STEP 3 — INSTALL JAVA
-
       - name: Install Java
-
         uses: actions/setup-java@v4
-
         with:
           distribution: 'temurin'
           java-version: '17'
 
-
-      # STEP 4 — INSTALL PYSPARK
-
+      # STEP 4 — INSTALL DEPENDENCIES
       - name: Install Dependencies
-
         run: |
-
           pip install pyspark
           pip install requests
 
-
-      # STEP 5 — CREATE RAW FOLDER
-
-      - name: Create Raw Folder
-
+      # STEP 5 — CREATE ALL REQUIRED FOLDERS
+      - name: Create Folders
         run: |
-
           mkdir -p data/raw
+          mkdir -p data/processed
+          mkdir -p visualize
 
-
-      # STEP 6 — DOWNLOAD TODAY CSV FROM NETLIFY
-
+      # STEP 6 — DOWNLOAD TODAY'S CSV FROM NETLIFY
       - name: Download CSV File
-
         run: |
-
           TODAY=$(date +'%Y_%m_%d')
-
           FILE_NAME="sales_${TODAY}.csv"
-
           FILE_URL="https://perdapp.netlify.app/${FILE_NAME}"
-
           echo "Checking File: $FILE_URL"
-
           HTTP_STATUS=$(curl -o data/raw/$FILE_NAME \
           -s -w "%{http_code}" $FILE_URL)
-
           echo "HTTP Status: $HTTP_STATUS"
-
           if [ "$HTTP_STATUS" != "200" ]; then
-
-            echo "No CSV file found for today"
-
+            echo "No CSV file found for today — skipping pipeline"
+            echo "SKIP=true" >> $GITHUB_ENV
             exit 0
-
           fi
+          echo "SKIP=false" >> $GITHUB_ENV
 
-
+      # STEP 7 — RUN PYSPARK ETL PIPELINE
       - name: Run Pipeline
-
+        if: env.SKIP != 'true'
         run: |
-
           cd scripts
-
           python pipeline.py
 
+      # STEP 8 — COMMIT ALL OUTPUTS TO REPOSITORY
       - name: Commit Processed Outputs
-
+        if: env.SKIP != 'true'
         run: |
-
           git config --global user.name "github-actions"
-
           git config --global user.email "github-actions@github.com"
-
           git add .
-
           git commit -m "Automated ETL Output Update" || echo "No Changes"
-
           git push
