@@ -10,7 +10,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 print("Spark Session Started")
 
-df = spark.read.csv(f"data/raw/sales_{today}.csv",header=True,inferSchema=True)
+df = spark.read.csv(f"../data/raw/sales_{today}.csv",header=True,inferSchema=True)
 
 df.show()
 
@@ -285,7 +285,7 @@ print("Analytics Data Generated!")
 
 df.write.mode("overwrite").parquet(
 
-    f"data/processed/cleaned_sales_{today}"
+    f"../data/processed/perdapp_retail_analytics_{today}"
 
 )
 
@@ -295,7 +295,7 @@ import json
 
 with open(
 
-    "visualize/analytics.json",
+    "../visualize/analytics.json",
 
     "w"
 
