@@ -1,12 +1,7 @@
-
-
 from datetime import datetime
 
 # today's date in YYYY_MM_DD format
 today = datetime.today().strftime("%Y_%m_%d")
-# build file name
-url = f"https://raw.githubusercontent.com/noblemathew/PERDAPP/main/data/raw/sales_{today}.csv"
-print(url)
 
 from pyspark.sql import SparkSession
 
@@ -15,7 +10,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 print("Spark Session Started")
 
-df = spark.read.csv(url,header=True,inferSchema=True)
+df = spark.read.csv(f"data/raw/sales_{today}.csv",header=True,inferSchema=True)
 
 df.show()
 
