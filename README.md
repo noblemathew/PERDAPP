@@ -16,6 +16,9 @@ The pipeline processes daily retail transaction datasets, performs data validati
 
 This project demonstrates scalable batch data processing, incremental file handling, automated workflow execution, and production-style ETL pipeline design using PySpark.
 
+PERDAPP is designed as a continuously evolving enterprise analytics platform with ongoing feature enhancements, dashboard improvements, workflow optimizations, and advanced analytical capabilities currently under active development.
+
+
 ---
 
 # 🚀 Key Features
@@ -45,7 +48,7 @@ This project demonstrates scalable batch data processing, incremental file handl
 | Python | Core development |
 | Apache Spark (PySpark) | Distributed data processing |
 | Spark SQL | Querying and aggregations |
-| Parquet | Optimized data storage |
+| csv | data storage |
 | GitHub Actions | Pipeline automation |
 | Netlify | CSV hosting and project website |
 | HTML/CSS/JavaScript | Web interface and visualization |
