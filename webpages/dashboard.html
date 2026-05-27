@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Sales Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow:hidden;background:#e7e7e7;font-family:'Poppins',sans-serif;}
+.dashboard{width:100vw;height:100vh;display:grid;grid-template-columns:220px 1fr;gap:10px;padding:10px;}
+.sidebar{background:#4c4c4c;border-radius:12px;padding:12px;color:white;display:flex;flex-direction:column;overflow:hidden;}
+.logo{text-align:center;font-size:24px;font-weight:600;margin-bottom:18px;font-family:'Oswald',sans-serif;letter-spacing:1px;}
+.filter-box{background:#5a5a5a;border-radius:10px;padding:14px;margin-bottom:14px;}
+.filter-box h3{font-size:14px;margin-bottom:12px;font-weight:500;}
+.month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.month-btn{border:none;background:#145291;color:white;border-radius:6px;padding:9px;font-size:12px;cursor:pointer;transition:0.3s;}
+.month-btn:hover,.month-btn.active{background:#1f7ff2;}
+.state-list{display:flex;flex-direction:column;gap:9px;font-size:13px;max-height:180px;overflow-y:auto;}
+.state-item{display:flex;align-items:center;gap:8px;}
+.main{display:flex;flex-direction:column;overflow:hidden;}
+.header{background:#3d6f9d;color:white;text-align:center;padding:16px;border-radius:12px;font-size:44px;font-family:'Oswald',sans-serif;margin-bottom:10px;flex-shrink:0;}
+.grid{flex:1;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:42% 58%;gap:10px;height:calc(100vh - 105px);}
+.card{background:#f4f4f4;border-radius:12px;padding:14px;border:1px solid #d2d2d2;box-shadow:0 2px 8px rgba(0,0,0,0.08);overflow:hidden;display:flex;flex-direction:column;}
+.card-title{font-size:14px;font-weight:600;margin-bottom:8px;color:#444;}
+.metric{flex:1;display:flex;justify-content:center;align-items:center;font-size:44px;font-weight:600;}
+.small-card{grid-column:span 3;}
+.chart-card{grid-column:span 4;}
+.pie-card{grid-column:span 5;}
+.map-card{grid-column:span 5;}
+.large-chart{grid-column:span 5;}
+.list-card{grid-column:span 2;}
+.product{padding:10px 0;border-bottom:1px solid #ddd;}
+.product h4{font-size:14px;color:#145291;margin-bottom:4px;}
+.product p{font-size:13px;}
+canvas{width:100% !important;}
+#barChart,#lineChart{height:220px !important;}
+#pieChart{height:190px !important;max-height:190px !important;}
+iframe{width:100%;height:100%;border:none;border-radius:10px;}
+.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;z-index:999;color:white;font-size:18px;font-family:'Oswald',sans-serif;letter-spacing:1px;display:none;}
+.loading-overlay.active{display:flex;}
+@media(max-width:1200px){
+    body{overflow:auto;}
+    .dashboard{grid-template-columns:1fr;height:auto;}
+    .sidebar{overflow:visible;}
+    .grid{grid-template-columns:1fr;grid-template-rows:auto;height:auto;}
+    .small-card,.chart-card,.pie-card,.map-card,.large-chart,.list-card{grid-column:span 1;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="loading-overlay" id="loadingOverlay">Loading dataset…</div>
+
+<div class="dashboard">
+
+    <div class="sidebar">
+        <div class="logo">SALES ANALYTICS</div>
+
+        <div class="filter-box">
+            <h3>Select Month</h3>
+            <div class="month-grid" id="monthGrid"></div>
+        </div>
+
+        <div class="filter-box">
+            <h3>Select State</h3>
+            <div class="state-list" id="stateList"></div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="header">SALES DASHBOARD</div>
+
+        <div class="grid">
+
+            <div class="card small-card">
+                <div class="card-title">Total Orders Processed</div>
+                <div class="metric" id="ordersCount">—</div>
+            </div>
+
+            <div class="card chart-card">
+                <div class="card-title">State / Region Revenue</div>
+                <canvas id="barChart"></canvas>
+            </div>
+
+            <div class="card pie-card">
+                <div class="card-title">Gender Distribution</div>
+                <canvas id="pieChart"></canvas>
+            </div>
+
+  <div class="card map-card">
+    <div class="card-title">Country Revenue Distribution</div>
+    <canvas id="countryChart"></canvas>
+</div>
+
+            <div class="card large-chart">
+                <div class="card-title">Day-wise Revenue Trend</div>
+                <canvas id="lineChart"></canvas>
+            </div>
+
+            <div class="card list-card">
+                <div class="card-title">Best Selling Products</div>
+                <div id="productList"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+/* ================================================================
+   PERDAPP — Dynamic Dashboard
+   Reads pre-computed analytics_YYYY_MM_DD.json from GitHub
+   No CSV parsing. No hardcoded values. No random data.
+================================================================ */
+
+const GITHUB_BASE   = 'https://raw.githubusercontent.com/noblemathew/PERDAPP/main/';
+const VISUALIZE_PATH = 'visualize/';
+const DATASETS_JSON  = GITHUB_BASE + VISUALIZE_PATH + 'available_datasets.json';
+
+/* ---- runtime state ---- */
+let currentData   = null;   // full analytics JSON for active month
+let currentStates = [];     // all states in dataset
+let checkedStates = new Set(); // states currently checked (empty = all)
+
+/* ---- chart instances ---- */
+let barChart, pieChart, lineChart, scatterChart;
+
+/* ================================================================
+   INIT
+================================================================ */
+async function init() {
+    initCharts();
+    await loadAvailableDatasets();
+}
+
+/* ================================================================
+   STEP 1 — FETCH INDEX: available_datasets.json
+================================================================ */
+async function loadAvailableDatasets() {
+    showLoading(true);
+    let files = [];
+
+    try {
+        const res = await fetch(DATASETS_JSON);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        files = await res.json();
+    } catch (e) {
+        console.error('available_datasets.json fetch failed:', e);
+        showLoading(false);
+        return;
+    }
+
+    if (!files.length) {
+        showLoading(false);
+        return;
+    }
+
+    buildMonthButtons(files);
+    await loadAnalytics(files[0]); // auto-load most recent
+    showLoading(false);
+}
+
+/* ================================================================
+   STEP 2 — BUILD MONTH BUTTONS
+   analytics_2026_05_24.json  →  "May 2026"
+================================================================ */
+function buildMonthButtons(files) {
+    const grid = document.getElementById('monthGrid');
+    grid.innerHTML = '';
+
+    files.forEach((filename, idx) => {
+        const btn = document.createElement('button');
+        btn.className   = 'month-btn' + (idx === 0 ? ' active' : '');
+        btn.textContent = filenameToLabel(filename);
+        btn.dataset.file = filename;
+
+        btn.addEventListener('click', async () => {
+            document.querySelectorAll('.month-btn')
+                    .forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            showLoading(true);
+            await loadAnalytics(filename);
+            showLoading(false);
+        });
+
+        grid.appendChild(btn);
+    });
+}
+
+/* analytics_2026_05_24.json  →  "May 2026" */
+function filenameToLabel(filename) {
+    const match = filename.match(/analytics_(\d{4})_(\d{2})_\d{2}\.json/i);
+    if (match) {
+        const year  = match[1];
+        const mIdx  = parseInt(match[2]) - 1;
+        const names = ['Jan','Feb','Mar','Apr','May','Jun',
+                       'Jul','Aug','Sep','Oct','Nov','Dec'];
+        return (names[mIdx] || 'M' + match[2]) + ' ' + year;
+    }
+    return filename; // fallback
+}
+
+/* ================================================================
+   STEP 3 — FETCH ANALYTICS JSON FOR SELECTED MONTH
+================================================================ */
+async function loadAnalytics(filename) {
+    const url = GITHUB_BASE + VISUALIZE_PATH + filename;
+
+    try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('HTTP ' + res.status + ' — ' + url);
+        currentData = await res.json();
+    } catch (e) {
+        console.error('Analytics JSON fetch failed:', e);
+        return;
+    }
+
+    // Reset state filter for new month
+    checkedStates = new Set();
+    buildStateFilter(currentData.state_sales || {});
+    renderAll(currentData, checkedStates);
+}
+
+/* ================================================================
+   STEP 4 — BUILD STATE FILTER FROM state_sales KEYS
+================================================================ */
+function buildStateFilter(stateSales) {
+    const list = document.getElementById('stateList');
+    list.innerHTML = '';
+// --- Select All / Clear All buttons ---
+const btnRow = document.createElement('div');
+btnRow.style.cssText = 'display:flex;gap:6px;margin-bottom:10px;';
+
+const selectAll = document.createElement('button');
+selectAll.textContent = 'Select All';
+selectAll.style.cssText = 'flex:1;border:none;background:#145291;color:white;border-radius:6px;padding:6px;font-size:11px;cursor:pointer;';
+
+const clearAll = document.createElement('button');
+clearAll.textContent = 'Clear All';
+clearAll.style.cssText = 'flex:1;border:none;background:#7a7a7a;color:white;border-radius:6px;padding:6px;font-size:11px;cursor:pointer;';
+
+selectAll.addEventListener('click', () => {
+    checkedStates.clear();
+    list.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = true);
+    renderAll(currentData, checkedStates);
+});
+
+clearAll.addEventListener('click', () => {
+    currentStates.forEach(s => checkedStates.add(s));
+    list.querySelectorAll('input[type=checkbox]').forEach(cb => cb.checked = false);
+    renderAll(currentData, checkedStates);
+});
+
+btnRow.appendChild(selectAll);
+btnRow.appendChild(clearAll);
+list.appendChild(btnRow);
+    currentStates = Object.keys(stateSales).sort();
+
+    currentStates.forEach(state => {
+        const label = document.createElement('label');
+        label.className = 'state-item';
+
+        const cb = document.createElement('input');
+        cb.type    = 'checkbox';
+        cb.checked = true;
+        cb.value   = state;
+
+        cb.addEventListener('change', () => {
+            if (cb.checked) {
+                checkedStates.delete(state);
+            } else {
+                checkedStates.add(state);
+            }
+            renderAll(currentData, checkedStates);
+        });
+
+        label.appendChild(cb);
+        label.appendChild(document.createTextNode(' ' + state));
+        list.appendChild(label);
+    });
+}
+
+/* ================================================================
+   STEP 5 — RENDER EVERYTHING FROM JSON
+================================================================ */
+function renderAll(data, excludedStates) {
+    if (!data) return;
+
+    const kpis        = data.kpis         || {};
+    const genderSales = data.gender_sales  || {};
+    const stateSales  = data.state_sales   || {};
+    const daySales    = data.day_sales     || {};
+    const ageSales    = data.age_group_sales || {};
+    const countrySales = data.country_sales || {};
+    const totalRevenue = kpis.total_revenue || 1;
+    const totalProfit = kpis.total_profit || 1;
+
+    // --- Filter state_sales by checked states ---
+    const filteredStates = Object.fromEntries(
+        Object.entries(stateSales)
+              .filter(([k]) => !excludedStates.has(k))
+    );
+
+    // --- KPI ---
+    const orders = excludedStates.size === 0
+        ? kpis.total_orders
+        : estimateFilteredOrders(stateSales, filteredStates, kpis.total_orders);
+    document.getElementById('ordersCount')
+            .textContent = (orders || 0).toLocaleString('en-IN');
+
+    // --- Bar Chart: state revenue ---
+    const stateEntries = Object.entries(filteredStates)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 8);
+    barChart.data.labels             = stateEntries.map(e => e[0]);
+    barChart.data.datasets[0].data   = stateEntries.map(e => Math.round(e[1]));
+    barChart.update();
+
+    // --- Pie Chart: gender distribution ---
+    pieChart.data.labels           = Object.keys(genderSales);
+    pieChart.data.datasets[0].data = Object.values(genderSales);
+    pieChart.update();
+
+
+
+    // --- Line Chart: day-wise revenue ---
+    const dayEntries = Object.entries(daySales)
+        .sort((a, b) => Number(a[0]) - Number(b[0]));
+    lineChart.data.labels           = dayEntries.map(e => 'Day ' + e[0]);
+    lineChart.data.datasets[0].data = dayEntries.map(e => +Number(e[1]).toFixed(2));
+    lineChart.update();
+
+
+// --- Scatter Plot: Country Revenue vs Share ---
+const totalFiltered = Object.values(filteredStates).reduce((a,b) => a+b, 0) || 1;
+const stateScatterEntries = Object.entries(filteredStates).sort((a,b) => b[1]-a[1]).slice(0,10);
+scatterChart.data.labels = stateScatterEntries.map(e => e[0]);
+scatterChart.data.datasets[0].data = stateScatterEntries.map(e => ({
+    x: Math.round(e[1]),
+    y: +((e[1] / totalFiltered) * 100).toFixed(2)
+}));
+scatterChart.update();
+    // --- Product list: age groups by revenue ---
+    renderProductList(ageSales, kpis.most_frequent_product);
+
+
+}
+
+/* ================================================================
+   PRODUCT LIST
+   Uses age_group_sales + most_frequent_product from KPIs
+================================================================ */
+function renderProductList(ageSales, topProduct) {
+    const container = document.getElementById('productList');
+    container.innerHTML = '';
+
+    // Top product from KPIs
+    if (topProduct) {
+        const div = document.createElement('div');
+        div.className = 'product';
+        div.innerHTML = `<h4>${topProduct}</h4><p>Top Product</p>`;
+        container.appendChild(div);
+    }
+
+    // Age group revenue breakdown
+    Object.entries(ageSales)
+          .sort((a, b) => b[1] - a[1])
+          .forEach(([group, rev]) => {
+              const div = document.createElement('div');
+              div.className = 'product';
+              div.innerHTML = `<h4>${group}</h4><p>${formatINR(rev)}</p>`;
+              container.appendChild(div);
+          });
+}
+
+/* ================================================================
+   MAP — zoom to active states
+================================================================ */
+function updateMap(activeStateList) {
+    let query = 'india';
+    if (activeStateList.length === 1) {
+        query = activeStateList[0] + ', india';
+    }
+    const encoded = encodeURIComponent(query);
+    document.getElementById('mapFrame').src =
+        `https://maps.google.com/maps?q=${encoded}&t=&z=5&ie=UTF8&iwloc=&output=embed`;
+}
+
+/* ================================================================
+   HELPER — Estimate filtered order count proportionally
+================================================================ */
+function estimateFilteredOrders(allStates, filteredStates, totalOrders) {
+    const totalRev    = Object.values(allStates).reduce((a, b) => a + b, 0);
+    const filteredRev = Object.values(filteredStates).reduce((a, b) => a + b, 0);
+    if (!totalRev) return totalOrders;
+    return Math.round((filteredRev / totalRev) * totalOrders);
+}
+
+/* ================================================================
+   CHART INIT — same visual style, no data yet
+================================================================ */
+function initCharts() {
+    barChart = new Chart(document.getElementById('barChart'), {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Revenue',
+                data: [],
+                backgroundColor: [
+                    '#13508f','#3e7fc4','#5ea3ef','#84bbf5',
+                    '#a8cef7','#c6dffb','#1a6bbf','#2980d9'
+                ],
+                borderRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } }
+        }
+    });
+
+    pieChart = new Chart(document.getElementById('pieChart'), {
+        type: 'pie',
+        data: {
+            labels: [],
+            datasets: [{
+                data: [],
+                backgroundColor: [
+                    '#13508f','#5ea3ef','#3e7fc4','#84bbf5','#1a6bbf'
+                ]
+            }]
+        },
+        options: { responsive: true }
+    });
+
+    lineChart = new Chart(document.getElementById('lineChart'), {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Revenue',
+                data: [],
+                borderColor: '#13508f',
+                backgroundColor: 'rgba(19,80,143,0.1)',
+                tension: 0.4,
+                fill: false
+            }]
+        },
+        options: { responsive: true }
+    });
+
+scatterChart = new Chart(document.getElementById('countryChart'), {
+    type: 'scatter',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Revenue vs Share %',
+            data: [],
+            backgroundColor: ['#13508f','#3e7fc4','#5ea3ef','#84bbf5','#1a6bbf','#2980d9','#6fa8dc'],
+            pointRadius: 9,
+            pointHoverRadius: 12
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                callbacks: {
+                    label: ctx => {
+                        const label = scatterChart.data.labels[ctx.dataIndex] || '';
+                        return `${label}: ₹${ctx.parsed.x.toLocaleString('en-IN')} | ${ctx.parsed.y}%`;
+                    }
+                }
+            }
+        },
+        scales: {
+            x: { title: { display: true, text: 'State Revenue (₹)' } },
+            y: { title: { display: true, text: 'Revenue Share (%)' }, ticks: { callback: v => v + '%' } }
+        }
+    },
+    plugins: [{
+        id: 'scatterLabels',
+        afterDatasetsDraw(chart) {
+            const ctx = chart.ctx;
+            const dataset = chart.data.datasets[0];
+            const labels = chart.data.labels;
+            const meta = chart.getDatasetMeta(0);
+            ctx.save();
+            ctx.font = '10px Poppins';
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'center';
+            meta.data.forEach((point, i) => {
+                const label = (labels[i] || '').trim();
+                ctx.fillText(label, point.x, point.y - 13);
+            });
+            ctx.restore();
+        }
+    }]
+});
+}
+
+/* ================================================================
+   UTILS
+================================================================ */
+function formatINR(n) {
+    if (n >= 1e7) return '₹' + (n / 1e7).toFixed(2) + ' Cr';
+    if (n >= 1e5) return '₹' + (n / 1e5).toFixed(2) + ' L';
+    return '₹' + Number(n).toLocaleString('en-IN');
+}
+
+function showLoading(state) {
+    document.getElementById('loadingOverlay')
+            .classList.toggle('active', state);
+}
+
+/* ================================================================
+   KICK OFF
+================================================================ */
+init();
+</script>
+
+</body>
+</html>
