@@ -78,4 +78,5 @@ This project demonstrates scalable batch data processing, incremental file handl
 
 © 2026 Noble Mathew. All rights reserved.
 
-This project is intended for educational and portfolio purposes only. Unauthorized commercial reuse or redistribution is prohibited.
+This project is intended for educational and portfolio purposes only.
+Unauthorized commercial reuse or redistribution is prohibited.
