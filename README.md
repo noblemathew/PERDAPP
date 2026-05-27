@@ -79,7 +79,3 @@ This project demonstrates scalable batch data processing, incremental file handl
 © 2026 Noble Mathew. All rights reserved.
 
 This project is intended for educational and portfolio purposes only. Unauthorized commercial reuse or redistribution is prohibited.
-
-
-- LinkedIn: www.linkedin.com/in/noble-mathew-43026a235
-- GitHub: https://github.com/Noble-Mathew
