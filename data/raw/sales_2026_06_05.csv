@@ -1,0 +1,90 @@
+Sales_Order #,Date,Day,Month,Year,Customer_Age,Age_Group,Customer_Gender,Country,State,Product_Category,Sub_Category,Product_Description,Order_Quantity, Unit_Cost , Unit_Price , Profit , Cost ,Revenue
+261695,06/08/2026,8,June,2026,39,Adults (35-64),F,United States,California,Bikes,Mountain Bikes,"Mountain-200 Black, 46",4.0,1252,2295,4172,5008,9180
+261695,06/08/2026,8,June,2026,44,Adults (35-64),M,United Kingdom,England,Bikes,Mountain Bikes,"Mountain-200 Silver, 42",1.0,1266,2320,1054,1266,2320
+261697,06/09/2026,9,June,2026,37,Adults (35-64),M, United States,California,Bikes,Mountain Bikes,"Mountain-400-W Silver, 46",2.0,420,769,698,840,1538
+261698,06/09/2026,9,June,2026,31,Young Adults (25-34),F,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-400-W Silver, 42",1.0,420,769,349,420,769
+261699,06/10/2026,10,June,2026,37,Adults (35-64),F,United  States,California,Bikes,Mountain Bikes,"Mountain-200 Black, 46",2.0,0,2295,2086,0,4590
+261700,06/10/2026,10,June,2026,24,Youth (<25),F,United Kingdom,England,Bikes,Mountain Bikes,"Mountain-200 Black, 38",1.0,1252,2295,1043,1252,2295
+261701,06/10/2026,10,June,2026,37,Adults (35-64),M,United States ,Washington,Bikes,Mountain Bikes,"Mountain-200 Black, 46",1.0,1252,2295,1043,1252,2295
+261701,06/10/2026,10,June,2026,37,Adults (35-64),M,United States,Washington,Bikes,Mountain Bikes,"Mountain-200 Black, 46",1.0,1252,2295,1043,1252,2295
+261702,06/11/2026,11,June,2026,31,Young Adults (25-34),F,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-400-W Silver, 42",4.0,420,0,1396,1680,0
+261703,06/12/2026,12,June,2026,39,Adults (35-64),F,United States,California,Bikes,Mountain Bikes,"Mountain-200 Black, 46",4.0,1252,2295,4172,5008,9180
+261704,06/08/2026,8,June,2026,42,Adults (35-64),M,Germany,Nordrhein-Westfalen,Bikes,Mountain Bikes,"Mountain-200 Black, 38",4.0,1252,2295,4172,5008,9180
+261705,06/12/2026,12,June,2026,35,Adults (35-64),F,Australia,Queensland,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",1.0,1266,2320,1054,1266,2320
+261706,06/12/2026,12,June,2026,37,Adults (35-64),F,United States,California,Bikes,Mountain Bikes,"Mountain-200 Black, 46",1.0,1252,2295,1043,1252,2295
+261707,06/13/2026,13,June,2026,23,Youth (<25),M,United Kingdom,England,Bikes,Mountain Bikes,"Mountain-400-W Silver, 46",3.0,420,769,1047,1260,2307
+261708,06/13/2026,13,June,2026,27,Young Adults (25-34),M,Canada,British Columbia,Bikes,Mountain Bikes,"Mountain-200 Black, 46",1.0,1252,2295,1043,1252,2295
+261709,06/13/2026,13,June,2026,36,,M,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-200 Black, 42",1.0,1252,2295,1043,1252,2295
+261710,06/13/2026,13,June,2026,47,Adults (35-64),M,United Kingdom,England,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",1.0,1266,2320,1054,1266,2320
+261711,06/14/2026,14,June,2026,30,Young Adults (25-34),M,United States,California,Bikes,Mountain Bikes,"Mountain-400-W Silver, 38",4.0,420,769,1396,1680,3076
+261712,06/14/2026,14,June,2026,38,Adults (35-64),M,United States,California,Bikes,Mountain Bikes,"Mountain-200 Silver, 42",2.0,1266,2320,2108,2532,4640
+261713,06/15/2026,15,June,2026,19,Youth (<25),F,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-500 Silver, 42",4.0,308,565,1028,1232,2260
+261714,06/15/2026,15,June,2026,30,Young Adults (25-34),F,Canada,British Columbia,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",4.0,1266,2320,4216,5064,9280
+261715,06/15/2026,15,June,2026,39,Adults (35-64),F,United States,Oregon,Bikes,Mountain Bikes,,2.0,1252,2295,2086,2504,4590
+261716,06/15/2026,15,June,2026,35,Adults (35-64),F,United States,California,Bikes,Mountain Bikes,"Mountain-500 Black, 42",,295,540,245,0,0
+261717,06/16/2026,16,June,2026,33,Young Adults (25-34),F,Australia,Victoria,Bikes,Mountain Bikes,"Mountain-100 Black, 38",2.0,1898,3375,2954,3796,6750
+261718,06/16/2026,16,June,2026,41,Adults (35-64),F,Germany,Hamburg,Bikes,Mountain Bikes,"Mountain-200 Silver, 42",1.0,1266,2320,1054,1266,2320
+261719,06/17/2026,17,June,2026,34,Young Adults (25-34),F,United States,California,Bikes,Mountain Bikes,"Mountain-200 Black, 42",2.0,1252,2295,2086,2504,4590
+261720,06/17/2026,17,June,2026,40,Adults (35-64),M,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-200 Black, 42",2.0,1252,2295,2086,2504,4590
+261721,06/17/2026,17,June,2026,26,Young Adults (25-34),M,United Kingdom,England,Bikes,Mountain Bikes,"Mountain-200 Black, 38",1.0,1252,2295,1043,1252,2295
+261722,06/17/2026,17,June,2026,34,Young Adults (25-34),M,United States,California,Bikes,Mountain Bikes,"Mountain-500 Black, 40",1.0,295,540,245,295,540
+261723,06/17/2026,17,June,2026,34,Young Adults (25-34),F,United States,Washington,Bikes,Mountain Bikes,"Mountain-100 Silver, 44",1.0,1912,3400,1488,1912,3400
+261724,06/17/2026,17,June,2026,38,Adults (35-64),M,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-200 Black, 38",1.0,1252,2295,1043,1252,2295
+261725,06/18/2026,18,June,2026,24,Youth (<25),F,France,Seine (Paris),Bikes,Mountain Bikes,"Mountain-200 Black, 38",3.0,1252,2295,3129,3756,6885
+261726,06/18/2026,18,June,2026,41,Adults (35-64),F,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-400-W Silver, 38",2.0,420,769,698,840,1538
+261727,06/18/2026,18,June,2026,27,Young Adults (25-34),M,Canada,British Columbia,Bikes,Mountain Bikes,"Mountain-200 Black, 46",1.0,1252,2295,1043,1252,2295
+261728,06/18/2026,18,June,2026,37,Adults (35-64),M,United States,California,Bikes,Mountain Bikes,"Mountain-400-W Silver, 46",1.0,420,769,349,420,769
+261729,06/18/2026,18,June,2026,38,Adults (35-64),F,United States,California,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",1.0,1266,2320,1054,1266,2320
+261730,06/19/2026,19,June,2026,36,Adults (35-64),F,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-200 Silver, 42",4.0,1266,2320,4216,5064,9280
+261731,06/19/2026,19,June,2026,37,Adults (35-64),M,United States,California,Bikes,Mountain Bikes,"Mountain-400-W Silver, 46",4.0,420,769,1396,1680,3076
+261732,06/19/2026,19,June,2026,34,Young Adults (25-34),M,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-200 Black, 38",2.0,1252,2295,2086,2504,4590
+261733,06/19/2026,19,June,2026,35,Adults (35-64),F,Australia,Victoria,Bikes,Mountain Bikes,"Mountain-200 Silver, 42",1.0,1266,2320,1054,1266,2320
+261734,06/19/2026,19,June,2026,38,Adults (35-64),F,United States,Washington,Bikes,Mountain Bikes,"Mountain-200 Silver, 42",1.0,1266,2320,1054,1266,2320
+261735,06/20/2026,20,June,2026,32,Young Adults (25-34),F,Australia,Queensland,Bikes,Mountain Bikes,"Mountain-200 Silver, 42",3.0,1266,2320,3162,3798,6960
+261736,06/20/2026,20,June,2026,40,Adults (35-64),F,United States,California,Bikes,Mountain Bikes,"Mountain-500 Silver, 40",1.0,308,565,257,308,565
+261737,06/20/2026,20,June,2026,44,Adults (35-64),F,United Kingdom,England,Bikes,Mountain Bikes,"Mountain-200 Black, 38",1.0,1252,2295,1043,1252,2295
+261738,06/20/2026,20,June,2026,49,Adults (35-64),M,United Kingdom,England,Bikes,Mountain Bikes,"Mountain-200 Black, 38",1.0,1252,2295,1043,1252,2295
+261739,06/21/2026,21,June,2026,30,Young Adults (25-34),F,United States,Washington,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",2.0,1266,2320,2108,2532,4640
+261740,06/21/2026,21,June,2026,32,Young Adults (25-34),M,United States,California,Bikes,Mountain Bikes,"Mountain-200 Black, 46",1.0,1252,2295,1043,1252,2295
+261741,06/21/2026,21,June,2026,32,Young Adults (25-34),F,Australia,Victoria,Bikes,Mountain Bikes,"Mountain-400-W Silver, 46",1.0,420,769,349,420,769
+261742,06/22/2026,22,June,2026,29,Young Adults (25-34),F,United States,California,Bikes,Mountain Bikes,"Mountain-200 Silver, 42",1.0,1266,2320,1054,1266,2320
+261743,06/23/2026,23,June,2026,33,Young Adults (25-34),F,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-200 Black, 38",2.0,1252,2295,2086,2504,4590
+261744,06/23/2026,23,June,2026,38,Adults (35-64),M,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-200 Black, 38",2.0,1252,2295,2086,2504,4590
+261745,06/23/2026,23,June,2026,27,Young Adults (25-34),F,France,Seine et Marne,Bikes,Mountain Bikes,"Mountain-200 Silver, 46",1.0,1266,2320,1054,1266,2320
+261746,06/24/2026,24,June,2026,37,Adults (35-64),F,United States,Washington,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",2.0,1266,2320,2108,2532,4640
+261747,06/24/2026,24,June,2026,31,Young Adults (25-34),M,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-400-W Silver, 42",1.0,420,769,349,420,769
+261748,06/24/2026,24,June,2026,42,Adults (35-64),F,Germany,Nordrhein-Westfalen,Bikes,Mountain Bikes,"Mountain-200 Silver, 46",1.0,1266,2320,1054,1266,2320
+261749,06/25/2026,25,June,2026,35,Adults (35-64),F,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-500 Silver, 42",4.0,308,565,1028,1232,2260
+261750,06/25/2026,25,June,2026,38,Adults (35-64),F,Germany,Nordrhein-Westfalen,Bikes,Mountain Bikes,"Mountain-200 Silver, 46",4.0,1266,2320,4216,5064,9280
+261751,06/25/2026,25,June,2026,24,Youth (<25),F,France,Seine Saint Denis,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",3.0,1266,2320,3162,3798,6960
+261752,06/25/2026,25,June,2026,26,Young Adults (25-34),F,United Kingdom,England,Bikes,Mountain Bikes,"Mountain-400-W Silver, 42",3.0,420,769,1047,1260,2307
+261753,06/25/2026,25,June,2026,39,Adults (35-64),M,United States,California,Bikes,Mountain Bikes,"Mountain-200 Black, 42",3.0,1252,2295,3129,3756,6885
+261754,06/25/2026,25,June,2026,26,Young Adults (25-34),M,France,Seine (Paris),Bikes,Mountain Bikes,"Mountain-200 Black, 46",1.0,1252,2295,1043,1252,2295
+261755,06/25/2026,25,June,2026,36,Adults (35-64),M,United States,Washington,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",1.0,1266,2320,1054,1266,2320
+261756,06/26/2026,26,June,2026,17,Youth (<25),M,France,Nord,Bikes,Mountain Bikes,"Mountain-200 Silver, 46",4.0,1266,2320,4216,5064,9280
+261757,06/26/2026,26,June,2026,19,Youth (<25),F,Australia,Victoria,Bikes,Mountain Bikes,"Mountain-500 Black, 44",4.0,295,540,980,1180,2160
+261758,06/26/2026,26,June,2026,25,Young Adults (25-34),M,France,Seine (Paris),Bikes,Mountain Bikes,"Mountain-200 Black, 38",4.0,1252,2295,4172,5008,9180
+261759,06/26/2026,26,June,2026,35,Adults (35-64),F,United States,Oregon,Bikes,Mountain Bikes,"Mountain-100 Black, 48",4.0,1898,3375,5908,7592,13500
+261760,06/26/2026,26,June,2026,37,Adults (35-64),M,United States,Oregon,Bikes,Mountain Bikes,"Mountain-200 Black, 38",4.0,1252,2295,4172,5008,9180
+261761,06/26/2026,26,June,2026,39,Adults (35-64),F,United States,California,Bikes,Mountain Bikes,"Mountain-200 Black, 46",4.0,1252,2295,4172,5008,9180
+261762,06/26/2026,26,June,2026,63,Adults (35-64),F,Australia,Queensland,Bikes,Mountain Bikes,"Mountain-200 Black, 46",4.0,1252,2295,4172,5008,9180
+261763,06/26/2026,26,June,2026,18,Youth (<25),M,Australia,South Australia,Bikes,Mountain Bikes,"Mountain-500 Black, 40",2.0,295,540,490,590,1080
+261764,06/26/2026,26,June,2026,56,Adults (35-64),F,Germany,Hessen,Bikes,Mountain Bikes,"Mountain-200 Black, 46",2.0,1252,2295,2086,2504,4590
+261765,06/26/2026,26,June,2026,39,Adults (35-64),F,United States,Washington,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",1.0,1266,2320,1054,1266,2320
+261766,06/27/2026,27,June,2026,33,Young Adults (25-34),F,Australia,Victoria,Bikes,Mountain Bikes,"Mountain-100 Black, 38",4.0,1898,3375,5908,7592,13500
+261767,06/27/2026,27,June,2026,57,Adults (35-64),M,Australia,Queensland,Bikes,Mountain Bikes,"Mountain-200 Black, 46",4.0,1252,2295,4172,5008,9180
+261768,06/27/2026,27,June,2026,29,Young Adults (25-34),M,Canada,British Columbia,Bikes,Mountain Bikes,"Mountain-500 Black, 52",3.0,295,540,735,885,1620
+261769,06/27/2026,27,June,2026,35,Adults (35-64),F,Australia,Queensland,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",1.0,1266,2320,1054,1266,2320
+261770,06/27/2026,27,June,2026,35,Adults (35-64),M,Australia,Victoria,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",1.0,1266,2320,1054,1266,2320
+261771,06/28/2026,28,June,2026,26,Young Adults (25-34),M,France,Somme,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",3.0,1266,2320,3162,3798,6960
+261772,06/28/2026,28,June,2026,23,Youth (<25),M,United Kingdom,England,Bikes,Mountain Bikes,"Mountain-400-W Silver, 46",2.0,420,769,698,840,1538
+261773,06/29/2026,29,June,2026,30,Young Adults (25-34),F,United States,Washington,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",3.0,1266,2320,3162,3798,6960
+261774,06/29/2026,29,June,2026,41,Adults (35-64),M,United States,California,Bikes,Mountain Bikes,"Mountain-200 Black, 42",3.0,1252,2295,3129,3756,6885
+261775,06/29/2026,29,June,2026,19,Youth (<25),F,Australia,New South Wales,Bikes,Mountain Bikes,"Mountain-500 Silver, 42",1.0,308,565,257,308,565
+261776,06/29/2026,29,June,2026,25,Young Adults (25-34),M,France,Seine (Paris),Bikes,Mountain Bikes,"Mountain-200 Black, 38",1.0,1252,2295,1043,1252,2295
+261777,06/29/2026,29,June,2026,27,Young Adults (25-34),F,Canada,British Columbia,Bikes,Mountain Bikes,"Mountain-200 Black, 46",1.0,1252,2295,1043,1252,2295
+261778,06/29/2026,29,June,2026,41,Adults (35-64),M,Germany,Hessen,Bikes,Mountain Bikes,"Mountain-200 Silver, 38",1.0,1266,2320,1054,1266,2320
+261779,06/30/2026,30,June,2026,30,Young Adults (25-34),F,United States,Oregon,Bikes,Mountain Bikes,"Mountain-200 Silver, 42",1.0,1266,2320,1054,1266,2320
+261780,06/30/2026,30,June,2026,31,Young Adults (25-34),F,Canada,British Columbia,Bikes,Mountain Bikes,"Mountain-200 Black, 42",1.0,1252,2295,1043,1252,2295
+261781,06/30/2026,30,June,2026,35,Adults (35-64),F,United States,California,Bikes,Mountain Bikes,"Mountain-500 Black, 42",1.0,295,540,245,295,540
+261782,06/01/2026,1,June,2026,38,Adults (35-64),M,Australia,Queensland,Bikes,Mountain Bikes,"Mountain-200 Black, 42",4.0,1252,2295,4172,5008,9180

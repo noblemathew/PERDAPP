@@ -1,0 +1,73 @@
+{
+    "kpis": {
+        "total_revenue": 353026,
+        "total_profit": 159781,
+        "total_orders": 85,
+        "average_revenue": 4153.25,
+        "most_frequent_product": "Mountain-200 Black, 46"
+    },
+    "gender_sales": {
+        "Female": 207843,
+        "Male": 145183
+    },
+    "country_sales": {
+        "United States ": 2295,
+        "Germany": 30010,
+        "France": 46175,
+        "United States": 122231,
+        "Canada": 20080,
+        " United States": 1538,
+        "Australia": 106135,
+        "United  States": 4590,
+        "United Kingdom": 19972
+    },
+    "age_group_sales": {
+        "Youth": 35330,
+        "Young Adults": 116570,
+        "Adults": 201126
+    },
+    "day_sales": {
+        "1": 9180,
+        "8": 20680,
+        "9": 2307,
+        "10": 11475,
+        "12": 13795,
+        "13": 6922,
+        "14": 7716,
+        "15": 11540,
+        "16": 9070,
+        "17": 17710,
+        "18": 13807,
+        "19": 21586,
+        "20": 12115,
+        "21": 7704,
+        "22": 2320,
+        "23": 11500,
+        "24": 7729,
+        "25": 32307,
+        "26": 69650,
+        "27": 28940,
+        "28": 8498,
+        "29": 21320,
+        "30": 5155
+    },
+    "state_sales": {
+        "Oregon": 25000,
+        "Nord": 9280,
+        "South Australia": 1080,
+        "Victoria": 27819,
+        "Somme": 6960,
+        "New South Wales": 38096,
+        "Washington": 31190,
+        "Seine": 20655,
+        "Hamburg": 2320,
+        "Seine et Marne": 2320,
+        "Nordrhein-Westfalen": 20780,
+        "Hessen": 6910,
+        "British Columbia": 20080,
+        "Seine Saint Denis": 6960,
+        "England": 19972,
+        "Queensland": 39140,
+        "California": 74464
+    }
+}
